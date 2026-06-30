@@ -23,7 +23,7 @@ brew install --cask arlkn/detach/detach
 
 - Lists apps from `/Applications` and `~/Applications`.
 - Offers two uninstall modes: app-only or app with related files.
-- Moves files to Trash to delete them.
+- Moves files to trash to delete them.
 - Shows risky, skipped, and admin-only matches separately.
 - Saves removal history so moved items can be restored.
 
