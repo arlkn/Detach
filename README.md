@@ -74,6 +74,8 @@ Current public builds are ad-hoc signed and not notarized. macOS may block downl
 
 To create a Gatekeeper-clean public DMG, install a valid `Developer ID Application` certificate and create a notarytool keychain profile, then package with:
 
+> `Apple Development` certificates are not enough for public DMG downloads. Gatekeeper requires a `Developer ID Application` certificate plus Apple notarization.
+
 ```bash
 DETACH_SIGN_IDENTITY="Developer ID Application: Your Name (TEAMID)" \
 DETACH_NOTARY_PROFILE="detach-notary" \

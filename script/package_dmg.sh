@@ -37,6 +37,11 @@ if [[ "$SIGN_IDENTITY" == "-" ]]; then
   fi
   codesign --force --deep --sign - "$STAGING_DIR/$APP_NAME.app" >/dev/null 2>&1 || true
 else
+  if [[ "$REQUIRE_NOTARIZATION" == "1" && "$SIGN_IDENTITY" != Developer\ ID\ Application:* ]]; then
+    echo "DETACH_REQUIRE_NOTARIZATION=1 requires a Developer ID Application signing identity." >&2
+    echo "Current DETACH_SIGN_IDENTITY: $SIGN_IDENTITY" >&2
+    exit 1
+  fi
   codesign \
     --force \
     --deep \
