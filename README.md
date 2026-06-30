@@ -4,6 +4,10 @@ Detach is a native macOS utility for uninstalling apps safely. It can remove onl
 
 
 <p align="center">
+  <img src="media/detach-overview.png" alt="Detach app overview" width="100%" />
+</p>
+
+<p align="center">
   <a href="https://github.com/arlkn/Detach/releases/latest/download/Detach.dmg">
     <img src="Detach/Resources/AppIcon.png" alt="Download Detach" width="128" />
   </a>
@@ -11,10 +15,6 @@ Detach is a native macOS utility for uninstalling apps safely. It can remove onl
 
 <p align="center">
   <strong>Click the icon to download the latest Detach DMG</strong>
-</p>
-
-<p align="center">
-  <img src="media/detach-overview.png" alt="Detach app overview" width="100%" />
 </p>
 
 ### Homebrew 🍺
