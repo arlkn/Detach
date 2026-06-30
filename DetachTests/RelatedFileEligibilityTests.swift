@@ -1,5 +1,5 @@
 import XCTest
-@testable import MacAppUninstaller
+@testable import Detach
 
 final class RelatedFileEligibilityTests: XCTestCase {
     func testSafeUserFileIsAutomaticAndNotAdminEligible() {

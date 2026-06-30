@@ -16,36 +16,36 @@ APP_RESOURCES="$APP_CONTENTS/Resources"
 APP_BINARY="$APP_MACOS/$APP_NAME"
 INFO_PLIST="$APP_CONTENTS/Info.plist"
 PKG_INFO="$APP_CONTENTS/PkgInfo"
-PROJECT="$ROOT_DIR/MacAppUninstaller.xcodeproj"
-APP_LOGO="$ROOT_DIR/MacAppUninstaller/Resources/AppLogo.png"
-APP_ICON="$ROOT_DIR/MacAppUninstaller/Resources/AppIcon.png"
+PROJECT="$ROOT_DIR/Detach.xcodeproj"
+APP_LOGO="$ROOT_DIR/Detach/Resources/AppLogo.png"
+APP_ICON="$ROOT_DIR/Detach/Resources/AppIcon.png"
 
 SOURCES=(
-  "$ROOT_DIR/MacAppUninstaller/AppUninstallerApp.swift"
-  "$ROOT_DIR/MacAppUninstaller/Views/ContentView.swift"
-  "$ROOT_DIR/MacAppUninstaller/Views/SettingsView.swift"
-  "$ROOT_DIR/MacAppUninstaller/ViewModels/AppUninstallerViewModel.swift"
-  "$ROOT_DIR/MacAppUninstaller/Models/InstalledApp.swift"
-  "$ROOT_DIR/MacAppUninstaller/Models/AppPreferences.swift"
-  "$ROOT_DIR/MacAppUninstaller/Models/RelatedFile.swift"
-  "$ROOT_DIR/MacAppUninstaller/Models/DeletionManifest.swift"
-  "$ROOT_DIR/MacAppUninstaller/Services/AppScanner.swift"
-  "$ROOT_DIR/MacAppUninstaller/Services/RelatedFileScanner.swift"
-  "$ROOT_DIR/MacAppUninstaller/Services/FileDeletionService.swift"
-  "$ROOT_DIR/MacAppUninstaller/Services/TrashService.swift"
-  "$ROOT_DIR/MacAppUninstaller/Services/AdminTrashService.swift"
-  "$ROOT_DIR/MacAppUninstaller/Services/AccessibilityPermissionService.swift"
-  "$ROOT_DIR/MacAppUninstaller/Services/RestoreService.swift"
-  "$ROOT_DIR/MacAppUninstaller/Services/RiskClassifier.swift"
-  "$ROOT_DIR/MacAppUninstaller/Services/ManifestStore.swift"
-  "$ROOT_DIR/MacAppUninstaller/Utilities/FileManager+Sizing.swift"
-  "$ROOT_DIR/MacAppUninstaller/Utilities/ByteCount.swift"
+  "$ROOT_DIR/Detach/AppUninstallerApp.swift"
+  "$ROOT_DIR/Detach/Views/ContentView.swift"
+  "$ROOT_DIR/Detach/Views/SettingsView.swift"
+  "$ROOT_DIR/Detach/ViewModels/AppUninstallerViewModel.swift"
+  "$ROOT_DIR/Detach/Models/InstalledApp.swift"
+  "$ROOT_DIR/Detach/Models/AppPreferences.swift"
+  "$ROOT_DIR/Detach/Models/RelatedFile.swift"
+  "$ROOT_DIR/Detach/Models/DeletionManifest.swift"
+  "$ROOT_DIR/Detach/Services/AppScanner.swift"
+  "$ROOT_DIR/Detach/Services/RelatedFileScanner.swift"
+  "$ROOT_DIR/Detach/Services/FileDeletionService.swift"
+  "$ROOT_DIR/Detach/Services/TrashService.swift"
+  "$ROOT_DIR/Detach/Services/AdminTrashService.swift"
+  "$ROOT_DIR/Detach/Services/AccessibilityPermissionService.swift"
+  "$ROOT_DIR/Detach/Services/RestoreService.swift"
+  "$ROOT_DIR/Detach/Services/RiskClassifier.swift"
+  "$ROOT_DIR/Detach/Services/ManifestStore.swift"
+  "$ROOT_DIR/Detach/Utilities/FileManager+Sizing.swift"
+  "$ROOT_DIR/Detach/Utilities/ByteCount.swift"
 )
 
 stop_running_app() {
   pkill -x "$APP_NAME" >/dev/null 2>&1 || true
   pkill -x "Panelmac" >/dev/null 2>&1 || true
-  pkill -x "MacAppUninstaller" >/dev/null 2>&1 || true
+  pkill -x "Detach" >/dev/null 2>&1 || true
 }
 
 build_with_xcode_if_available() {
@@ -80,7 +80,7 @@ build_with_xcode_if_available() {
 build_with_swiftc() {
   rm -rf "$APP_BUNDLE"
   mkdir -p "$APP_MACOS"
-  CLANG_MODULE_CACHE_PATH="${CLANG_MODULE_CACHE_PATH:-/private/tmp/macappuninstaller-module-cache}" \
+  CLANG_MODULE_CACHE_PATH="${CLANG_MODULE_CACHE_PATH:-/private/tmp/detach-module-cache}" \
     xcrun swiftc -o "$APP_BINARY" "${SOURCES[@]}"
   chmod +x "$APP_BINARY"
 

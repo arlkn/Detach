@@ -1,5 +1,5 @@
 import XCTest
-@testable import MacAppUninstaller
+@testable import Detach
 
 final class RestoreServiceTests: XCTestCase {
     private var temporaryDirectory: URL!

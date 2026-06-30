@@ -1,5 +1,5 @@
 import XCTest
-@testable import MacAppUninstaller
+@testable import Detach
 
 final class ManifestStoreTests: XCTestCase {
     private var temporaryDirectory: URL!

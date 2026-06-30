@@ -4,7 +4,7 @@ Detach is a native macOS utility for uninstalling apps safely. It can remove onl
 
 <p align="center">
   <a href="https://github.com/arlkn/Detach/releases/latest/download/Detach.dmg">
-    <img src="MacAppUninstaller/Resources/AppIcon.png" alt="Download Detach" width="128" />
+    <img src="Detach/Resources/AppIcon.png" alt="Download Detach" width="128" />
   </a>
 </p>
 
@@ -37,7 +37,7 @@ brew install --cask arlkn/detach/detach
 
 ## Build From Source
 
-Open `MacAppUninstaller.xcodeproj` in Xcode, select the `MacAppUninstaller` scheme, configure signing, and run.
+Open `Detach.xcodeproj` in Xcode, select the `Detach` scheme, configure signing, and run.
 
 Command-line fallback:
 
@@ -69,11 +69,11 @@ Current public builds are ad-hoc signed and not notarized. macOS may show a Gate
 
 ## Project Structure
 
-- `MacAppUninstaller/Views`: SwiftUI app UI.
-- `MacAppUninstaller/ViewModels`: app state and uninstall flow.
-- `MacAppUninstaller/Models`: app, related-file, and manifest models.
-- `MacAppUninstaller/Services`: scanning, Trash movement, history, restore, and permission services.
-- `MacAppUninstallerTests`: unit tests for scanning, risk, manifests, restore, and deletion services.
+- `Detach/Views`: SwiftUI app UI.
+- `Detach/ViewModels`: app state and uninstall flow.
+- `Detach/Models`: app, related-file, and manifest models.
+- `Detach/Services`: scanning, Trash movement, history, restore, and permission services.
+- `DetachTests`: unit tests for scanning, risk, manifests, restore, and deletion services.
 - `Casks/detach.rb`: Homebrew cask for the release DMG.
 
 ## License

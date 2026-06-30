@@ -43,13 +43,13 @@
 			containerPortal = 1000000000000000000000F0 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 100000000000000000000201;
-			remoteInfo = MacAppUninstaller;
+			remoteInfo = Detach;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		100000000000000000000041 /* Detach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Detach.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		100000000000000000000042 /* MacAppUninstallerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacAppUninstallerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		100000000000000000000042 /* DetachTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DetachTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		100000000000000000000101 /* AppUninstallerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUninstallerApp.swift; sourceTree = "<group>"; };
 		100000000000000000000102 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/ContentView.swift; sourceTree = "<group>"; };
 		100000000000000000000114 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/SettingsView.swift; sourceTree = "<group>"; };
@@ -90,14 +90,14 @@
 		100000000000000000000061 = {
 			isa = PBXGroup;
 			children = (
-				100000000000000000000071 /* MacAppUninstaller */,
-				100000000000000000000072 /* MacAppUninstallerTests */,
+				100000000000000000000071 /* Detach */,
+				100000000000000000000072 /* DetachTests */,
 				100000000000000000000124 /* README.md */,
 				100000000000000000000073 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		100000000000000000000071 /* MacAppUninstaller */ = {
+		100000000000000000000071 /* Detach */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000000000101 /* AppUninstallerApp.swift */,
@@ -123,10 +123,10 @@
 				100000000000000000000110 /* AppLogo.png */,
 				100000000000000000000111 /* AppIcon.png */,
 			);
-			path = MacAppUninstaller;
+			path = Detach;
 			sourceTree = "<group>";
 		};
-		100000000000000000000072 /* MacAppUninstallerTests */ = {
+		100000000000000000000072 /* DetachTests */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000000000121 /* RiskClassifierTests.swift */,
@@ -136,14 +136,14 @@
 				100000000000000000000126 /* RestoreServiceTests.swift */,
 				100000000000000000000127 /* RelatedFileEligibilityTests.swift */,
 			);
-			path = MacAppUninstallerTests;
+			path = DetachTests;
 			sourceTree = "<group>";
 		};
 		100000000000000000000073 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				100000000000000000000041 /* Detach.app */,
-				100000000000000000000042 /* MacAppUninstallerTests.xctest */,
+				100000000000000000000042 /* DetachTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -151,9 +151,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		100000000000000000000201 /* MacAppUninstaller */ = {
+		100000000000000000000201 /* Detach */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 100000000000000000000301 /* Build configuration list for PBXNativeTarget "MacAppUninstaller" */;
+			buildConfigurationList = 100000000000000000000301 /* Build configuration list for PBXNativeTarget "Detach" */;
 			buildPhases = (
 				100000000000000000000081 /* Sources */,
 				100000000000000000000051 /* Frameworks */,
@@ -161,14 +161,14 @@
 			);
 			buildRules = ();
 			dependencies = ();
-			name = MacAppUninstaller;
-			productName = MacAppUninstaller;
+			name = Detach;
+			productName = Detach;
 			productReference = 100000000000000000000041 /* Detach.app */;
 			productType = "com.apple.product-type.application";
 		};
-		100000000000000000000202 /* MacAppUninstallerTests */ = {
+		100000000000000000000202 /* DetachTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 100000000000000000000302 /* Build configuration list for PBXNativeTarget "MacAppUninstallerTests" */;
+			buildConfigurationList = 100000000000000000000302 /* Build configuration list for PBXNativeTarget "DetachTests" */;
 			buildPhases = (
 				100000000000000000000082 /* Sources */,
 				100000000000000000000052 /* Frameworks */,
@@ -178,9 +178,9 @@
 			dependencies = (
 				100000000000000000000032 /* PBXTargetDependency */,
 			);
-			name = MacAppUninstallerTests;
-			productName = MacAppUninstallerTests;
-			productReference = 100000000000000000000042 /* MacAppUninstallerTests.xctest */;
+			name = DetachTests;
+			productName = DetachTests;
+			productReference = 100000000000000000000042 /* DetachTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -197,7 +197,7 @@
 					100000000000000000000202 = { CreatedOnToolsVersion = 16.0; TestTargetID = 100000000000000000000201; };
 				};
 			};
-			buildConfigurationList = 100000000000000000000300 /* Build configuration list for PBXProject "MacAppUninstaller" */;
+			buildConfigurationList = 100000000000000000000300 /* Build configuration list for PBXProject "Detach" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -207,8 +207,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				100000000000000000000201 /* MacAppUninstaller */,
-				100000000000000000000202 /* MacAppUninstallerTests */,
+				100000000000000000000201 /* Detach */,
+				100000000000000000000202 /* DetachTests */,
 			);
 		};
 /* End PBXProject section */
@@ -265,7 +265,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		100000000000000000000032 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = 100000000000000000000201 /* MacAppUninstaller */; targetProxy = 100000000000000000000031 /* PBXContainerItemProxy */; };
+		100000000000000000000032 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = 100000000000000000000201 /* Detach */; targetProxy = 100000000000000000000031 /* PBXContainerItemProxy */; };
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -434,7 +434,7 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.local.MacAppUninstallerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.local.DetachTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Detach.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Detach";
@@ -449,7 +449,7 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.local.MacAppUninstallerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.local.DetachTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Detach.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Detach";
@@ -459,9 +459,9 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		100000000000000000000300 /* Build configuration list for PBXProject "MacAppUninstaller" */ = {isa = XCConfigurationList; buildConfigurations = (100000000000000000000401 /* Debug */, 100000000000000000000402 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
-		100000000000000000000301 /* Build configuration list for PBXNativeTarget "MacAppUninstaller" */ = {isa = XCConfigurationList; buildConfigurations = (100000000000000000000403 /* Debug */, 100000000000000000000404 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
-		100000000000000000000302 /* Build configuration list for PBXNativeTarget "MacAppUninstallerTests" */ = {isa = XCConfigurationList; buildConfigurations = (100000000000000000000405 /* Debug */, 100000000000000000000406 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		100000000000000000000300 /* Build configuration list for PBXProject "Detach" */ = {isa = XCConfigurationList; buildConfigurations = (100000000000000000000401 /* Debug */, 100000000000000000000402 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		100000000000000000000301 /* Build configuration list for PBXNativeTarget "Detach" */ = {isa = XCConfigurationList; buildConfigurations = (100000000000000000000403 /* Debug */, 100000000000000000000404 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		100000000000000000000302 /* Build configuration list for PBXNativeTarget "DetachTests" */ = {isa = XCConfigurationList; buildConfigurations = (100000000000000000000405 /* Debug */, 100000000000000000000406 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 /* End XCConfigurationList section */
 	};
 	rootObject = 1000000000000000000000F0 /* Project object */;
