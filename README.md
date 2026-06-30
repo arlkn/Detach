@@ -12,16 +12,6 @@ Detach is a native macOS utility for uninstalling apps safely. It can remove onl
   <strong>Click the icon to download the latest Detach DMG</strong>
 </p>
 
-## Install
-
-### Download DMG
-
-Download the latest release:
-
-[Detach.dmg](https://github.com/arlkn/Detach/releases/latest/download/Detach.dmg)
-
-Open the DMG and drag `Detach.app` into `Applications`.
-
 ### Homebrew 🍺
 
 ```bash
