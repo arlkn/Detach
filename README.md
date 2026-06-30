@@ -1,6 +1,6 @@
 # Detach
 
-Native macOS 13+ SwiftUI utility for listing installed apps, scanning related support files, reviewing risk, and moving selected user-space files to Trash.
+Detach is a native macOS utility for uninstalling apps safely. It can remove only the app bundle, or move the app and matched related files to Trash with review, history, and restore support.
 
 <p align="center">
   <a href="https://github.com/arlkn/Detach/releases/latest/download/Detach.dmg">
@@ -12,86 +12,79 @@ Native macOS 13+ SwiftUI utility for listing installed apps, scanning related su
   <strong>Click the icon to download the latest Detach DMG</strong>
 </p>
 
-## Kurulum
+## Install
 
-1. `MacAppUninstaller.xcodeproj` dosyasını Xcode ile açın.
-2. `MacAppUninstaller` scheme'ini seçin.
-3. Signing için kendi development team'inizi seçin.
-4. Build and Run.
+### Download DMG
 
-## Komut Satırı Build
+Download the latest release:
 
-Full Xcode yoksa proje `swiftc` fallback ile de çalıştırılabilir:
+[Detach.dmg](https://github.com/arlkn/Detach/releases/latest/download/Detach.dmg)
+
+Open the DMG and drag `Detach.app` into `Applications`.
+
+### Homebrew
+
+```bash
+brew tap arlkn/detach https://github.com/arlkn/Detach.git
+brew install --cask arlkn/detach/detach
+```
+
+## What Detach Does
+
+- Lists apps from `/Applications` and `~/Applications`.
+- Offers two uninstall modes: app-only or app with related files.
+- Moves files to Trash instead of permanently deleting them.
+- Shows risky, skipped, and admin-only matches separately.
+- Saves removal history so moved items can be restored.
+
+## Safety
+
+- No permanent delete path.
+- Second confirmation before removal.
+- Low-confidence matches are never selected automatically.
+- Protected Apple/system paths are left untouched.
+- Admin-only items are separate and never selected by default.
+
+## Build From Source
+
+Open `MacAppUninstaller.xcodeproj` in Xcode, select the `MacAppUninstaller` scheme, configure signing, and run.
+
+Command-line fallback:
 
 ```bash
 ./script/build_and_run.sh
 ```
 
-Sadece app bundle üretmek için:
+Build only:
 
 ```bash
 ./script/build_and_run.sh --build-only
 ```
 
-## DMG Paketi
-
-İndirilebilir macOS disk imajı üretmek için:
+Create a DMG:
 
 ```bash
 ./script/package_dmg.sh
 ```
 
-Çıktı:
+The DMG is written to:
 
 ```text
 build/dist/Detach.dmg
 ```
 
-Not: Bu geliştirme paketi ad-hoc imzalıdır ve notarize edilmemiştir. Genel dağıtım için Apple Developer ID sertifikası, hardened runtime ve notarization akışı eklenmelidir.
+## Distribution Note
 
-## Ana Dosya Yapısı
+Current public builds are ad-hoc signed and not notarized. macOS may show a Gatekeeper warning until Developer ID signing and notarization are added.
 
-- `MacAppUninstaller/AppUninstallerApp.swift`: SwiftUI app entry point.
-- `MacAppUninstaller/Views/ContentView.swift`: Sol uygulama listesi, detay paneli, kaldırma modları, review ve ikinci onay akışı.
-- `MacAppUninstaller/ViewModels/AppUninstallerViewModel.swift`: MVVM state, selection ve deletion orchestration.
-- `MacAppUninstaller/Models`: `InstalledApp`, `RelatedFile`, `DeletionManifest`.
-- `MacAppUninstaller/Services/AppScanner.swift`: `/Applications` ve `~/Applications` içindeki `.app` paketlerini tarar.
-- `MacAppUninstaller/Services/RelatedFileScanner.swift`: Kullanıcı ve sistem Library lokasyonlarında ilişkili dosyaları listeler.
-- `MacAppUninstaller/Services/RiskClassifier.swift`: Bundle id, uygulama adı ve ters domain eşleşmesiyle güven seviyesi üretir.
-- `MacAppUninstaller/Services/FileDeletionService.swift`: Güvenlik doğrulaması sonrası seçili dosyaları Trash'e taşır.
-- `MacAppUninstaller/Services/ManifestStore.swift`: Undo manifest JSON dosyalarını yazar.
-- `MacAppUninstaller/Services/RestoreService.swift`: History manifestlerinden Trash'e taşınan öğeleri özgün konumlarına geri yükler.
-- `MacAppUninstallerTests`: Risk, eşleşme ve Trash mock testleri.
+## Project Structure
 
-## Gereken İzinler
-
-İlk sürüm sandbox kapalı olacak şekilde yapılandırıldı (`ENABLE_APP_SANDBOX = NO`). Bunun nedeni uygulamanın `~/Library` ve salt listeleme için `/Library` altındaki farklı konumları okuyabilmesidir.
-
-Kullanıcı alanındaki dosyaları Trash'e taşıma desteklenir. `/Library/...` gibi sistem genelindeki ilişkili dosyalar ayrı gösterilir, varsayılan seçilmez ve yalnızca kaldırma anında admin onayı istenir.
-
-## Sınırlamalar
-
-- v1 kalıcı silme yapmaz; yalnızca Trash'e taşır.
-- Apple/system protected uygulamalar için uygulama bundle'ını kaldırma akışı eklenmedi.
-- Kod imza doğrulaması derin notarization veya certificate-chain analizi yapmaz; bundle id ve bilinen sistem uygulaması korumalarıyla muhafazakar davranır.
-
-## Güvenlik Notları
-
-- Hiçbir dosya otomatik taşınmaz.
-- Kullanıcı önce Review ekranını, sonra ikinci onay dialog'unu geçmek zorundadır.
-- Low confidence dosyalar varsayılan seçili gelmez.
-- `/System`, `/bin`, `/usr`, `/sbin` gibi sistem dizinleri taşınmaz.
-- Symlink dosyalar otomatik seçilmez ve taşınmaz; hedef körlemesine takip edilmez.
-- Bundle ID eşleşmesi olmayan dosyalar düşük veya orta güvene düşürülür.
-- Sistem genelindeki dosyalar admin gerektirir olarak işaretlenir, varsayılan seçilmez ve açık kullanıcı onayı olmadan taşınmaz.
-- Her başarılı Trash işlemi için `~/Library/Application Support/Detach/DeletionManifests` altında undo manifest yazılır.
-
-## Gelecek Sürüm Planı
-
-- Authorization Services veya SMAppService tabanlı signed privileged helper.
-- Daha güçlü Apple code-signing doğrulaması.
-- Daha ayrıntılı eşleşme denetimi ve kullanıcıya confidence açıklamaları.
-- CI üzerinde `xcodebuild test` entegrasyonu.
+- `MacAppUninstaller/Views`: SwiftUI app UI.
+- `MacAppUninstaller/ViewModels`: app state and uninstall flow.
+- `MacAppUninstaller/Models`: app, related-file, and manifest models.
+- `MacAppUninstaller/Services`: scanning, Trash movement, history, restore, and permission services.
+- `MacAppUninstallerTests`: unit tests for scanning, risk, manifests, restore, and deletion services.
+- `Casks/detach.rb`: Homebrew cask for the release DMG.
 
 ## License
 
