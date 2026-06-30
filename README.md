@@ -13,16 +13,15 @@ Detach is a native macOS utility for uninstalling apps safely. It can remove onl
   </a>
 </p>
 
-<p align="center">
-  <strong>Click the icon to download the latest Detach DMG</strong>
-</p>
-
 ### Homebrew 🍺
 
 ```bash
 brew tap arlkn/detach https://github.com/arlkn/Detach.git
 brew install --cask arlkn/detach/detach
 ```
+<p align="center">
+  <strong>Click the icon to download the latest Detach DMG</strong>
+</p>
 
 ## What Detach Does
 
