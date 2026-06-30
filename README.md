@@ -13,6 +13,10 @@ Detach is a native macOS utility for uninstalling apps safely. It can remove onl
   <strong>Click the icon to download the latest Detach DMG</strong>
 </p>
 
+<p align="center">
+  <img src="media/detach-overview.png" alt="Detach app overview" width="100%" />
+</p>
+
 ### Homebrew 🍺
 
 ```bash
@@ -24,7 +28,7 @@ brew install --cask arlkn/detach/detach
 
 - Lists apps from `/Applications` and `~/Applications`.
 - Offers two uninstall modes: app-only or app with related files.
-- Moves files to trash to delete them.
+- Moves files to Trash to delete them.
 - Shows risky, skipped, and admin-only matches separately.
 - Saves removal history so moved items can be restored.
 
