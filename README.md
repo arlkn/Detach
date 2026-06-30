@@ -70,7 +70,18 @@ build/dist/Detach.dmg
 
 ## Distribution Note
 
-Current public builds are ad-hoc signed and not notarized. macOS may show a Gatekeeper warning until Developer ID signing and notarization are added.
+Current public builds are ad-hoc signed and not notarized. macOS may block downloaded builds with an Apple verification warning until a Developer ID certificate and Apple notarization are used.
+
+To create a Gatekeeper-clean public DMG, install a valid `Developer ID Application` certificate and create a notarytool keychain profile, then package with:
+
+```bash
+DETACH_SIGN_IDENTITY="Developer ID Application: Your Name (TEAMID)" \
+DETACH_NOTARY_PROFILE="detach-notary" \
+DETACH_REQUIRE_NOTARIZATION=1 \
+./script/package_dmg.sh
+```
+
+The script signs the app with hardened runtime, signs the DMG, submits it to Apple notarization, staples the ticket, and verifies the final DMG with `spctl`.
 
 ## Project Structure
 

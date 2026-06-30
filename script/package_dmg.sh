@@ -13,6 +13,9 @@ MOUNT_DIR="/Volumes/$APP_NAME"
 BACKGROUND_SOURCE="$ROOT_DIR/media/dmg-background.png"
 BACKGROUND_DIR="$STAGING_DIR/.background"
 BACKGROUND_NAME="dmg-background.png"
+SIGN_IDENTITY="${DETACH_SIGN_IDENTITY:--}"
+NOTARY_PROFILE="${DETACH_NOTARY_PROFILE:-}"
+REQUIRE_NOTARIZATION="${DETACH_REQUIRE_NOTARIZATION:-0}"
 
 cleanup() {
   if mount | grep -q "on $MOUNT_DIR "; then
@@ -26,7 +29,22 @@ trap cleanup EXIT
 rm -rf "$STAGING_DIR"
 mkdir -p "$STAGING_DIR" "$DIST_DIR"
 ditto --norsrc --noextattr "$APP_BUNDLE" "$STAGING_DIR/$APP_NAME.app"
-codesign --force --deep --sign - "$STAGING_DIR/$APP_NAME.app" >/dev/null 2>&1 || true
+if [[ "$SIGN_IDENTITY" == "-" ]]; then
+  echo "Warning: using ad-hoc signing. Downloaded builds will not pass Gatekeeper without Developer ID notarization." >&2
+  if [[ "$REQUIRE_NOTARIZATION" == "1" ]]; then
+    echo "DETACH_REQUIRE_NOTARIZATION=1 was set, but DETACH_SIGN_IDENTITY is missing." >&2
+    exit 1
+  fi
+  codesign --force --deep --sign - "$STAGING_DIR/$APP_NAME.app" >/dev/null 2>&1 || true
+else
+  codesign \
+    --force \
+    --deep \
+    --options runtime \
+    --timestamp \
+    --sign "$SIGN_IDENTITY" \
+    "$STAGING_DIR/$APP_NAME.app"
+fi
 codesign --verify --deep --strict --verbose=2 "$STAGING_DIR/$APP_NAME.app"
 ln -s /Applications "$STAGING_DIR/Applications"
 mkdir -p "$BACKGROUND_DIR"
@@ -89,5 +107,22 @@ hdiutil convert "$RW_DMG_PATH" \
   -imagekey zlib-level=9 \
   -o "$DMG_PATH"
 rm -f "$RW_DMG_PATH"
+
+if [[ "$SIGN_IDENTITY" != "-" ]]; then
+  codesign --force --sign "$SIGN_IDENTITY" --timestamp "$DMG_PATH"
+fi
+
+if [[ -n "$NOTARY_PROFILE" ]]; then
+  xcrun notarytool submit "$DMG_PATH" \
+    --keychain-profile "$NOTARY_PROFILE" \
+    --wait
+  xcrun stapler staple "$DMG_PATH"
+  spctl -a -vv -t open --context context:primary-signature "$DMG_PATH"
+elif [[ "$REQUIRE_NOTARIZATION" == "1" ]]; then
+  echo "DETACH_REQUIRE_NOTARIZATION=1 was set, but DETACH_NOTARY_PROFILE is missing." >&2
+  exit 1
+else
+  echo "Warning: DMG was not notarized. macOS Gatekeeper may block downloaded builds." >&2
+fi
 
 echo "$DMG_PATH"
