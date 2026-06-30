@@ -22,7 +22,7 @@ Download the latest release:
 
 Open the DMG and drag `Detach.app` into `Applications`.
 
-### Homebrew
+### Homebrew 🍺
 
 ```bash
 brew tap arlkn/detach https://github.com/arlkn/Detach.git
