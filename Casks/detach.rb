@@ -1,6 +1,6 @@
 cask "detach" do
   version "0.1.0"
-  sha256 "a4c91eb2b68706c008787704246195990020ecb5551d19e9d753594e6363cd0c"
+  sha256 "ca3d72ceb6be56d5d429406644a12e29a307db1dcd6fbf81ee6771c7a4280e86"
 
   url "https://github.com/arlkn/Detach/releases/download/v#{version}/Detach.dmg"
   name "Detach"
