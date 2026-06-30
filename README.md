@@ -77,7 +77,7 @@ To create a Gatekeeper-clean public DMG, install a valid `Developer ID Applicati
 > `Apple Development` certificates are not enough for public DMG downloads. Gatekeeper requires a `Developer ID Application` certificate plus Apple notarization.
 
 ```bash
-DETACH_SIGN_IDENTITY="Developer ID Application: Your Name (TEAMID)" \
+DETACH_SIGN_IDENTITY="Developer ID Application: Your Name (WKJYXBR23C)" \
 DETACH_NOTARY_PROFILE="detach-notary" \
 DETACH_REQUIRE_NOTARIZATION=1 \
 ./script/package_dmg.sh

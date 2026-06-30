@@ -4,7 +4,7 @@ set -euo pipefail
 MODE="${1:-run}"
 APP_NAME="Detach"
 DISPLAY_NAME="Detach"
-BUNDLE_ID="dev.local.Detach"
+BUNDLE_ID="com.arlkn.Detach"
 MIN_SYSTEM_VERSION="13.0"
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
