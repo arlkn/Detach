@@ -9,7 +9,7 @@ DIST_DIR="$BUILD_DIR/dist"
 STAGING_DIR="$BUILD_DIR/dmg-staging"
 DMG_PATH="$DIST_DIR/$APP_NAME.dmg"
 RW_DMG_PATH="$DIST_DIR/$APP_NAME-rw.dmg"
-MOUNT_DIR="$BUILD_DIR/dmg-mount"
+MOUNT_DIR="/Volumes/$APP_NAME"
 BACKGROUND_SOURCE="$ROOT_DIR/media/dmg-background.png"
 BACKGROUND_DIR="$STAGING_DIR/.background"
 BACKGROUND_NAME="dmg-background.png"
@@ -33,6 +33,7 @@ mkdir -p "$BACKGROUND_DIR"
 cp "$BACKGROUND_SOURCE" "$BACKGROUND_DIR/$BACKGROUND_NAME"
 
 rm -f "$DMG_PATH" "$RW_DMG_PATH"
+cleanup
 hdiutil create \
   -volname "$APP_NAME" \
   -srcfolder "$STAGING_DIR" \
@@ -41,53 +42,47 @@ hdiutil create \
   -format UDRW \
   "$RW_DMG_PATH"
 
-rm -rf "$MOUNT_DIR"
-mkdir -p "$MOUNT_DIR"
 hdiutil attach "$RW_DMG_PATH" \
-  -mountpoint "$MOUNT_DIR" \
-  -nobrowse \
   -noverify \
   -noautoopen
 
+if [[ ! -d "$MOUNT_DIR" ]]; then
+  echo "Expected DMG mount at $MOUNT_DIR, but it was not found." >&2
+  exit 1
+fi
+
 osascript <<APPLESCRIPT
-set dmgFolder to POSIX file "$MOUNT_DIR" as alias
 set backgroundFile to POSIX file "$MOUNT_DIR/.background/$BACKGROUND_NAME" as alias
 
 tell application "Finder"
-  open dmgFolder
-  delay 1
-  set containerWindow to container window of dmgFolder
-  set current view of containerWindow to icon view
-  try
-    set toolbar visible of containerWindow to false
-  end try
-  try
-    set statusbar visible of containerWindow to false
-  end try
-  set the bounds of containerWindow to {140, 120, 900, 550}
-  set theViewOptions to icon view options of containerWindow
-  set arrangement of theViewOptions to not arranged
-  set icon size of theViewOptions to 112
-  set background picture of theViewOptions to backgroundFile
-  set position of item "$APP_NAME.app" of dmgFolder to {215, 188}
-  set position of item "Applications" of dmgFolder to {545, 188}
-  update dmgFolder without registering applications
-  delay 1
-  try
-    close containerWindow
-  end try
-  delay 1
-  open dmgFolder
-  delay 1
-  try
-    close container window of dmgFolder
-  end try
+  tell disk "$APP_NAME"
+    open
+    delay 2
+    set current view of container window to icon view
+    try
+      set toolbar visible of container window to false
+    end try
+    try
+      set statusbar visible of container window to false
+    end try
+    set the bounds of container window to {140, 120, 900, 550}
+    set theViewOptions to icon view options of container window
+    set arrangement of theViewOptions to not arranged
+    set icon size of theViewOptions to 112
+    set background picture of theViewOptions to backgroundFile
+    set position of item "$APP_NAME.app" of container window to {215, 188}
+    set position of item "Applications" of container window to {545, 188}
+    update without registering applications
+    delay 2
+    try
+      close container window
+    end try
+  end tell
 end tell
 APPLESCRIPT
 
 sync
 hdiutil detach "$MOUNT_DIR"
-rm -rf "$MOUNT_DIR"
 
 hdiutil convert "$RW_DMG_PATH" \
   -format UDZO \
