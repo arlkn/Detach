@@ -2,6 +2,16 @@
 
 Native macOS 13+ SwiftUI utility for listing installed apps, scanning related support files, reviewing risk, and moving selected user-space files to Trash.
 
+<p align="center">
+  <a href="https://github.com/arlkn/Detach/releases/latest/download/Detach.dmg">
+    <img src="MacAppUninstaller/Resources/AppIcon.png" alt="Download Detach" width="128" />
+  </a>
+</p>
+
+<p align="center">
+  <strong>Click the icon to download the latest Detach DMG</strong>
+</p>
+
 ## Kurulum
 
 1. `MacAppUninstaller.xcodeproj` dosyasını Xcode ile açın.
@@ -82,3 +92,7 @@ Kullanıcı alanındaki dosyaları Trash'e taşıma desteklenir. `/Library/...` 
 - Daha güçlü Apple code-signing doğrulaması.
 - Daha ayrıntılı eşleşme denetimi ve kullanıcıya confidence açıklamaları.
 - CI üzerinde `xcodebuild test` entegrasyonu.
+
+## License
+
+Detach is licensed under the [MIT License](LICENSE).
