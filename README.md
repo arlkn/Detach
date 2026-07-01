@@ -9,6 +9,8 @@ Detach is a native macOS utility for uninstalling apps safely. It can remove onl
 
 ## FULL RELEASE COMING SOON!
 
+
+
 ## What Detach Does
 
 - Lists apps from `/Applications` and `~/Applications`.
@@ -25,50 +27,6 @@ Detach is a native macOS utility for uninstalling apps safely. It can remove onl
 - Protected Apple/system paths are left untouched.
 - Admin-only items are separate and never selected by default.
 
-## Build From Source
-
-Open `Detach.xcodeproj` in Xcode, select the `Detach` scheme, configure signing, and run.
-
-Command-line fallback:
-
-```bash
-./script/build_and_run.sh
-```
-
-Build only:
-
-```bash
-./script/build_and_run.sh --build-only
-```
-
-Create a DMG:
-
-```bash
-./script/package_dmg.sh
-```
-
-The DMG is written to:
-
-```text
-build/dist/Detach.dmg
-```
-
-## Distribution Note
-
-Current public builds are ad-hoc signed and not notarized. macOS may block downloaded builds with an Apple verification warning until a Developer ID certificate and Apple notarization are used.
-
-To create a Gatekeeper-clean public DMG, install a valid `Developer ID Application` certificate and create a notarytool keychain profile, then package with:
-
-> `Apple Development` certificates are not enough for public DMG downloads. Gatekeeper requires a `Developer ID Application` certificate plus Apple notarization.
-
-```bash
-DETACH_SIGN_IDENTITY="Developer ID Application: Your Name (WKJYXBR23C)" \
-DETACH_NOTARY_PROFILE="detach-notary" \
-DETACH_REQUIRE_NOTARIZATION=1 \
-./script/package_dmg.sh
-```
-
-The script signs the app with hardened runtime, signs the DMG, submits it to Apple notarization, staples the ticket, and verifies the final DMG with `spctl`.
 
 ## Project Structure
 
